@@ -18,3 +18,10 @@ git commit -m "Message de validation"
 
 
 git push origin master
+
+
+for deleting file on git 
+
+  - git rm <filename>
+  - git commit ...
+  - git push ....
