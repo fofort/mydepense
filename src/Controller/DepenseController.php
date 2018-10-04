@@ -14,6 +14,7 @@ class DepenseController extends Controller
     {
         return $this->render('depense/index.html.twig', [
             'controller_name' => 'DepenseController',
+            'navActive' => 'depense'
         ]);
     }
 }

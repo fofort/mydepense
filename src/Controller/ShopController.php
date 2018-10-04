@@ -14,6 +14,7 @@ class ShopController extends Controller
     {
         return $this->render('shop/index.html.twig', [
             'controller_name' => 'ShopController',
+            'navActive' => 'shop'
         ]);
     }
 }

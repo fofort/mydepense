@@ -1,0 +1,28 @@
+<div class="navbar navbar-inverse set-radius-zero">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>   
+        </div>
+        <div class="left-div">
+        MY Depense
+        </div>
+    </div>
+</div>
+<section class="menu-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="navbar-collapse collapse ">
+                    <ul id="menu-top" class="nav navbar-nav navbar-right">
+                        <li><a href="{{ path('depense') }}" class="{{ navActive == 'depense' ? 'menu-top-active' : '' }}">Depense</a></li>
+                        <li><a href="{{ path('shop') }}" class="{{ navActive == 'shop' ? 'menu-top-active' : '' }}">Magasin</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
