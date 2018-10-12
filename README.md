@@ -25,3 +25,9 @@ for deleting file on git
   - git rm <filename>
   - git commit ...
   - git push ....
+
+
+
+Run Project 
+$php bin/console server:run
+in broswer http://127.0.0.1:8000
