@@ -42,6 +42,47 @@ class Depense
      */
     private $dateBuy;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getIdShop(): ?int
+    {
+        return $this->idShop;
+    }
+
+    public function setIdShop(int $idShop): self
+    {
+        $this->idShop = $idShop;
+
+        return $this;
+    }
+
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    public function setAmount($amount): self
+    {
+        $this->amount = $amount;
+
+        return $this;
+    }
+
+    public function getDateBuy(): ?\DateTimeInterface
+    {
+        return $this->dateBuy;
+    }
+
+    public function setDateBuy(\DateTimeInterface $dateBuy): self
+    {
+        $this->dateBuy = $dateBuy;
+
+        return $this;
+    }
+
 
 }
 
