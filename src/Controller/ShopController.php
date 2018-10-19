@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
+use Symfony\Component\Translation\TranslatorInterface;
 
 class ShopController extends AbstractController
 {
@@ -18,16 +18,14 @@ class ShopController extends AbstractController
     /**
      * @Route("/shop", name="shop")
      */
-    public function index(Request $request)
+    public function index(Request $request,TranslatorInterface $translator)
     {
-        
                 
-
         $shop = new Shop();
         $form = $this->createFormBuilder($shop)
-            ->add('name', TextType::class, array('label' => 'Nom Magasin'))            
+            ->add('name', TextType::class, array('label' => 'LBL_SHOP_NAME'))
             ->add('save', SubmitType::class, array(
-                    'label' => 'Sauver',
+                    'label' => 'LBL_SAVE',
                     'attr' => array('class' =>'btn btn-default')
                 ))
             ->getForm();

@@ -24,16 +24,7 @@
                         <div class="panel-heading">
                            Ajouter Magasin
                         </div>
-                        <div class="panel-body">
-                       <form>
-                        <div class="form-group">
-                            <label for="nommag">Nom magasin</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Magasin" />
-                        </div>
-                        
-                        <button type="submit" class="btn btn-default">Submit</button>
-                        
-                        </form>
+                        <div class="panel-body">                      
                                                 
                         {# 
                         {{ form_start(form, {'action' : path('shop_new'), 'method':'GET'}) }}                        
@@ -57,7 +48,7 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>                                            
-                                            <th>Nom Magasin</th>
+                                            <th>{% trans %}NAME_SHOP{% endtrans %}</th>
                                             <th></th>
                                             
                                         </tr>

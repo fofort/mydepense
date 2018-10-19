@@ -31,3 +31,11 @@ for deleting file on git
 Run Project 
 $php bin/console server:run
 in broswer http://127.0.0.1:8000
+
+
+
+Help page 
+
+Translation
+-----------
+https://symfony.com/doc/current/translation.html
