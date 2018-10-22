@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Shop;
+use App\Repository\ShopRepository;
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,7 +24,7 @@ class ShopController extends AbstractController
                 
         $shop = new Shop();
         $form = $this->createFormBuilder($shop)
-            ->add('name', TextType::class, array('label' => 'LBL_SHOP_NAME'))
+            ->add('name', TextType::class, array('label' => 'LBL_NAME_SHOP'))
             ->add('save', SubmitType::class, array(
                     'label' => 'LBL_SAVE',
                     'attr' => array('class' =>'btn btn-default')
@@ -33,17 +34,29 @@ class ShopController extends AbstractController
             $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {            
-            $shop = $form->getData();            
+            $shop = $form->getData();
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($shop);
-            $entityManager->flush();
 
-            return $this->redirectToRoute('shop');
+            $repository = $this->getDoctrine()->getRepository(Shop::class);
+            $shopCheck = $repository->findBy(
+                ['name' => $shop->getName() ]
+            );
+
+            if ( count($shopCheck) === 0) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($shop);
+                $entityManager->flush();
+                return $this->redirectToRoute('shop');
+            } else {
+                $message = 'ERROR_SHOP_ALREADY_EXIST';
+            }
+            
         }
 
         $repository = $this->getDoctrine()->getRepository(Shop::class);
-        $shops = $repository->findAll();
+        
+        //$shops = $repository->findAll();
+        $shops = $repository->findAllOrderByName();
         
         
         return $this->render('shop/index.html.twig', [
@@ -52,20 +65,6 @@ class ShopController extends AbstractController
             'shops' => $shops,
             'form' => $form->createView()
         ]);
-    }
-
-
-    /**
-     * @Route("/shop/new", name="shop_new", methods={"GET"})
-     */
-    public function new(Request $request){
-        
-    
-            var_dump($_GET);
-            $request = Request::createFromGlobals();
-            //echo $request->request->get('name', 'default category');
-            echo $request->query->get('name');
-        exit();
     }
 
 
