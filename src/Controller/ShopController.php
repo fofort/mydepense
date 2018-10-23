@@ -24,16 +24,19 @@ class ShopController extends AbstractController
                 
         $shop = new Shop();
         $form = $this->createFormBuilder($shop)
-            ->add('name', TextType::class, array('label' => 'LBL_NAME_SHOP'))
+            ->add('name', TextType::class, array(
+                    'label' => 'LBL_NAME_SHOP',
+                    'attr' => ['placeholder' => 'LBL_NAME_SHOP'],
+                ))
             ->add('save', SubmitType::class, array(
                     'label' => 'LBL_SAVE',
                     'attr' => array('class' =>'btn btn-default')
                 ))
             ->getForm();
         
-            $form->handleRequest($request);
+        $form->handleRequest($request);
         
-        if ($form->isSubmitted() && $form->isValid()) {            
+        if ($form->isSubmitted() && $form->isValid()) {
             $shop = $form->getData();
 
 

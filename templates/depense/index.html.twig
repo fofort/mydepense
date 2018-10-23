@@ -74,6 +74,15 @@
                                     <td><input type="text" class="form-control" placeholder="Montant"></td>
                                     <td> <button type="submit" class="btn btn-primary">Sauvegarder</button></td>
                                 </tr>
+                                {{ form_start(form) }}
+                                <tr>
+                                    <td>{{ form_widget(form.nameShop) }}</td>
+                                    <td>{{ form_widget(form.dateBuy) }}</td>
+                                    <td>{{ form_widget(form.amount) }}</td>
+                                    <td>{{ form_widget(form.save) }}</td>
+                                </tr>
+                                {{ form_widget(form.idShop) }}
+                                {{ form_end(form) }}
                             </tbody>
                         </table>
                     </div>
