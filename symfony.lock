@@ -11,10 +11,28 @@
     "facebook/webdriver": {
         "version": "1.6.0"
     },
+    "symfony/contracts": {
+        "version": "v1.0.1"
+    },
     "symfony/panther": {
         "version": "v0.1.0"
     },
     "symfony/polyfill-php72": {
         "version": "v1.9.0"
+    },
+    "symfony/security-core": {
+        "version": "v4.2.0"
+    },
+    "symfony/security-csrf": {
+        "version": "v4.2.0"
+    },
+    "symfony/security-guard": {
+        "version": "v4.2.0"
+    },
+    "symfony/security-http": {
+        "version": "v4.2.0"
+    },
+    "symfony/var-exporter": {
+        "version": "v4.2.0"
     }
 }
