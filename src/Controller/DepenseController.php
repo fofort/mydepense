@@ -3,25 +3,36 @@
 namespace App\Controller;
 
 use App\Entity\Depense;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Translation\TranslatorInterface;
 
+use App\Form\DepenseType;
 
-class DepenseController extends Controller
+class DepenseController extends AbstractController
 {
-    /**
-     * @Route("/depense", name="depense")
+   
+    
+     /**
+     * @Route("/depense/{month}/{year}", name="depense")
      */
-    public function index()
+    public function index(Request $request,$month='',$year='')
     {
 
-
+        echo '<br>date :'.$month.'-'.$year;
+        //var_dump($request->request->all());
+        echo '<br> get :'.$request->get('amount');
+        echo '<br> get :'.$request->request->get('amount');
+        echo '<br> get :'.$request->query->get('amount');
+        
+        
         $depense = new Depense();
+        /*
         $form = $this->createFormBuilder($depense)
             ->add('nameShop', TextType::class, array(
                     'label' => 'LBL_NAME_SHOP',
@@ -32,6 +43,7 @@ class DepenseController extends Controller
             ->add('dateBuy', TextType::class, array(
                     'label' => 'LBL_DATE_DAY',
                     'attr' => ['placeholder' => 'LBL_DATE_DAY'],
+                    'mapped' => false
                 ))
             ->add('amount', TextType::class, array(
                     'label' => 'LBL_AMOUNT',
@@ -42,12 +54,41 @@ class DepenseController extends Controller
                     'attr' => array('class' =>'btn btn-default')
                 ))
             ->getForm();
-       // $form->handleRequest($request);
+        */
+        
+        $form = $this->createForm(DepenseType::class, $depense);
+
+        $form->handleRequest($request);
+
+        //var_dump($request);
+        echo $request->get('dateBuy');
+        echo $request->request->get('dateBuy');
+        echo $request->query->get('dateBuy');
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $depense = $form->getData();
+            var_dump($depense);
+            //$repository = $this->getDoctrine()->getRepository(Depense::class);
+            /*
+            if ( count($shopCheck) === 0) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($shop);
+                $entityManager->flush();
+                return $this->redirectToRoute('shop');
+            } else {
+                $message = 'ERROR_SHOP_ALREADY_EXIST';
+            }
+            */
+        
+        }
 
         $repository = $this->getDoctrine()->getRepository(Depense::class);
         
         //$shops = $repository->findAll();
         $shops = $repository->findAllOrderByDateBuy();
+
+
 
         return $this->render('depense/index.html.twig', [
             'controller_name' => 'DepenseController',
@@ -55,4 +96,6 @@ class DepenseController extends Controller
             'form' => $form->createView()
         ]);
     }
+
+
 }
