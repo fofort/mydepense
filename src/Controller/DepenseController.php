@@ -23,14 +23,16 @@ class DepenseController extends AbstractController
      */
     public function index(Request $request,$month='',$year='')
     {
+      //  print_r ($request);
 
         echo '<br>date :'.$month.'-'.$year;
+        /*
         //var_dump($request->request->all());
         echo '<br> get :'.$request->get('amount');
         echo '<br> get :'.$request->request->get('amount');
         echo '<br> get :'.$request->query->get('amount');
         
-        
+        */
         $depense = new Depense();
         /*
         $form = $this->createFormBuilder($depense)
@@ -60,11 +62,14 @@ class DepenseController extends AbstractController
 
         $form->handleRequest($request);
 
+        /*
         //var_dump($request);
         echo $request->get('dateBuy');
         echo $request->request->get('dateBuy');
         echo $request->query->get('dateBuy');
-        
+
+        var_dump($form);
+*/
         if ($form->isSubmitted() && $form->isValid()) {
             
             $depense = $form->getData();

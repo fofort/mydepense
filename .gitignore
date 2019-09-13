@@ -16,3 +16,7 @@
 ###< symfony/web-server-bundle ###
 /nbproject/
 /nbproject/private/
+
+
+### IDE configuration
+/.idea
