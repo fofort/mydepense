@@ -67,9 +67,10 @@ class DepenseController extends AbstractController
         echo $request->get('dateBuy');
         echo $request->request->get('dateBuy');
         echo $request->query->get('dateBuy');
-
-        var_dump($form);
 */
+        //var_dump($form);
+echo '<br>is form submitted: '. $form->isSubmitted();
+
         if ($form->isSubmitted() && $form->isValid()) {
             
             $depense = $form->getData();

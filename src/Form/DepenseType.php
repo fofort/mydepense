@@ -16,11 +16,11 @@ class DepenseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder            
-            ->add('nameShop', TextType::class, array(
+            /*->add('nameShop', TextType::class, array(
                 'label' => 'LBL_NAME_SHOP',
                 'attr' => ['placeholder' => 'LBL_NAME_SHOP'],
                 'mapped' => false
-            ))
+            ))*/
             ->add('idShop', HiddenType::class)
             ->add('dateBuy', TextType::class, array(
                     'label' => 'LBL_DATE_DAY',

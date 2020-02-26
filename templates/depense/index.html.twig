@@ -17,7 +17,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="table-responsive">
+                    <div class="table-responsive" id="depense-list">
                         <table class="table table-hover">
                             <thead>
                                 <tr>                                    
@@ -67,6 +67,7 @@
                                     <th colspan="4" class="text-left">Ajouter une entrée</th>
                                 </tr>
                             </thead>
+                            <form action='#' method="post" id="shopForm">
                             <tbody>
                                 <!-- <tr>
                                     <td><input type="text" class="form-control" placeholder="Magasin"></td>
@@ -75,11 +76,12 @@
                                     <td> <button type="submit" class="btn btn-primary">Sauvegarder</button></td>
                                 </tr>
                                 -->
+                                {#
                                 {{ form_start(form) }}
                                 <tr>
                                     <td>
                                         <input type="text" id="depense_nameShop" name="depense[nameShop]" required="required" 
-                                        placeholder="Nom Magasin" class="form-control" value="jh">
+                                        placeholder="Nom Magasin" class="form-control" value="">
                                     </td>
                                     <td>{{ form_widget(form.dateBuy) }}</td>
                                     <td>{{ form_widget(form.amount) }}</td>
@@ -87,7 +89,18 @@
                                 </tr>
                                 {{ form_widget(form.idShop) }}
                                 {{ form_end(form) }}
+                                #}
+
+                                <tr>
+                                    <td>
+                                        <input type="text" id="depense_nameShop" name="depense[nameShop]" required="required" placeholder="Nom Magasin" class="form-control" value="">
+                                    </td>
+                                    <td><input type="text" id="depense_dateBuy" name="depense[dateBuy]" required="required" placeholder="Jour" class="form-control"></td>
+                                    <td><input type="text" id="depense_amount" name="depense[amount]" required="required" placeholder="Montant" class="form-control"></td>
+                                    <td><button type="submit" id="depense_save" name="depense[save]" class="btn btn-default btn">Sauver</button></td>                                    
+                                </tr>
                             </tbody>
+                            </form>
                         </table>
                     </div>
                 </div>
@@ -96,4 +109,21 @@
     </div>
     <!-- CONTENT-WRAPPER SECTION END-->
     {% include 'footer.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script language="javascript">
+    
+    $('#depense_save').on("click", function(){        
+        console.log("j'ai clicker");
+        if ($("#shopForm").submit()) {
+            console.log("error");
+        } else {
+            console.log("no error");
+        }
+        console.log($("#depense_nameShop").val());
+    });
+    
+    </script>
 {% endblock %}
