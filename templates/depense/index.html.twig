@@ -67,7 +67,7 @@
                                     <th colspan="4" class="text-left">Ajouter une entrée</th>
                                 </tr>
                             </thead>
-                            <form action='#' method="post" id="shopForm">
+                            <form action='#' method="post" id="depenseForm">
                             <tbody>
                                 <!-- <tr>
                                     <td><input type="text" class="form-control" placeholder="Magasin"></td>
@@ -114,16 +114,17 @@
 {% block javascripts %}
     {{ parent() }}
     <script language="javascript">
-    
-    $('#depense_save').on("click", function(){        
-        console.log("j'ai clicker");
-        if ($("#shopForm").submit()) {
-            console.log("error");
-        } else {
-            console.log("no error");
-        }
+    /*
+    $('#depenseForm').on("click", function(){        
+            
+
         console.log($("#depense_nameShop").val());
     });
-    
+    */
+    $('#depenseForm').submit(function(e){
+        e.preventDefault();
+        var data = $(this).serialize()
+        console.log(data);
+    });     
     </script>
 {% endblock %}
